@@ -1,0 +1,28 @@
+  .form-check-input:checked {
+    background-color: #ff5d73;
+  }
+
+  .form-check-input {
+    color: #ff5d73;
+  }
+
+    <div class="form-check form-switch">
+      {#if autoCloze}
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="breakOnSentence"
+          on:input={() => breakOnSentence(true)}
+          checked
+        />
+      {:else}
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="breakOnSentence"
+          on:input={() => breakOnSentence(true)}
+        />
+      {/if}
+      <label class="form-check-label" for="breakOnSentence">Break on sentences</label>
+    </div>
+ 

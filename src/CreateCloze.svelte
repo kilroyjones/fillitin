@@ -30,7 +30,7 @@
 
 <div class="row">
   {#if step > 0}
-    <div class="col-6" on:click={() => switchScreen(-1)}>
+    <div class="col-6 text-end" on:click={() => switchScreen(-1)}>
       <button>Back</button>
     </div>
   {:else}
@@ -38,7 +38,7 @@
   {/if}
 
   {#if step < 2}
-    <div class="col-6 text-end" on:click={() => switchScreen(1)}>
+    <div class="col-6" on:click={() => switchScreen(1)}>
       <button>Next</button>
     </div>
   {/if}
