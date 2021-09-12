@@ -1,6 +1,6 @@
 <script>
-  import { onMount } from "svelte";
   import { originalText, parsedText, textChanged } from "./stores.js";
+  import { onMount } from "svelte";
   import Settings from "./Settings.svelte";
 
   // $originalText =
