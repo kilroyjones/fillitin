@@ -28,8 +28,8 @@
   });
 </script>
 
-<div class="row settings">
-  <div class="col-md-6">
+<div class="row">
+  <div class="col">
     <input
       type="range"
       class="form-range"
@@ -37,18 +37,12 @@
       bind:value={$percentageClozed}
       on:input={runAutoCloze}
     />
-  </div>
-  <div class="col-md-2">
     <strong>Cloze {$percentageClozed}%</strong>
     <label for="$percentageClozed" class="form-label" />
   </div>
 </div>
 
 <style>
-  .settings {
-    padding-top: 20px;
-    padding-bottom: 10px;
-  }
   .form-range::-webkit-slider-thumb {
     background-color: #fff;
   }

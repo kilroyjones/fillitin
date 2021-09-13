@@ -2,20 +2,20 @@
   import { originalText, parsedText, textChanged } from "./stores.js";
   import { onMount } from "svelte";
   import Settings from "./Settings.svelte";
-
-  // $originalText =
-  //   "Lorem Ipsum is simply dummy of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+  let text =
+    "Lorem Ipsum is simply dummy of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+  // export let text;
 
   async function processText() {
-    for (const word of $originalText.split(" ")) {
+    for (const word of text.split(" ")) {
       $parsedText.push({
         word: word,
         selected: false,
       });
     }
     $parsedText = $parsedText;
+    console.log($parsedText);
   }
-
   function toggleSelected(index) {
     $parsedText[index].selected = !$parsedText[index].selected;
     if ($parsedText[index].selected) {
@@ -24,23 +24,16 @@
       $parsedText[index].color = "#000000";
     }
   }
-
   onMount(async () => {
+    await processText();
     if ($textChanged) {
-      await processText();
       $textChanged = false;
     }
   });
 </script>
 
 <div class="row">
-  <div class="col">
-    <span class="title">Cloze it</span>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col">
+  <div class="col-lg-9 mt-2">
     <span contenteditable rows="8" class="form-control">
       {#each $parsedText as word, index}
         {#if word.selected}
@@ -55,13 +48,23 @@
       {/each}
     </span>
   </div>
-</div>
 
-<div class="row">
-  <div class="col">
-    {#if $parsedText.length > 0}
-      <Settings />
-    {/if}
+  <div class="col-lg-3">
+    <div class="row">
+      <div class="col">
+        <span class="title">Adjust</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row">
+        <div class="col">
+          {#if $parsedText.length > 0}
+            <Settings />
+          {/if}
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -71,7 +74,6 @@
     font-family: Anton, sans-serif;
     margin-left: 0px;
   }
-
   .word {
     border-radius: 8px;
     font-size: 20px;
@@ -85,7 +87,6 @@
     user-select: none;
     white-space: pre-wrap;
   }
-
   span.form-control[contenteditable] {
     display: inline-block;
     background-color: #e7dfc6;
