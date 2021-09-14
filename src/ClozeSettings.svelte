@@ -2,12 +2,16 @@
   import { parsedText, percentageClozed } from "./stores.js";
   import { onMount } from "svelte";
 
+  export let setSelectSimilar;
+
   let autoClozedIndices = [];
+  let selectSimilar = false;
 
   function runAutoCloze() {
     let iterations = parseInt(($percentageClozed / 100) * $parsedText.length);
-    for (const word of $parsedText) {
-      word.selected = false;
+
+    for (let i = 0; i < $parsedText.length; i++) {
+      $parsedText[i].selected = false;
     }
 
     for (let i = 0; i < iterations; i++) {
@@ -42,6 +46,27 @@
   </div>
 </div>
 
+<div class="row mt-4">
+  <div class="col">
+    <div class="form-check form-switch">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="selectSimilar"
+        bind:checked={selectSimilar}
+        on:input={() => setSelectSimilar(!selectSimilar)}
+      />
+      <label class="form-check-label" for="selectSimilar">Select similar</label>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col">
+    <button type="button" class="btn">Clear</button>
+  </div>
+</div>
+
 <style>
   .form-range::-webkit-slider-thumb {
     background-color: #fff;
@@ -57,5 +82,18 @@
 
   .form-range::-ms-thumb {
     background-color: #fff;
+  }
+
+  .form-check-input {
+    color: #ff5d73;
+  }
+
+  .form-check-input:checked {
+    background-color: #ff5d73;
+  }
+
+  button {
+    color: #fff;
+    background-color: #ff5d73;
   }
 </style>

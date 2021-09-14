@@ -1,12 +1,14 @@
 <script>
-  import { originalText, parsedText, textChanged } from "./stores.js";
+  import { parsedText } from "./stores.js";
   import { onMount } from "svelte";
-  import Settings from "./Settings.svelte";
+  import ClozeSettings from "./ClozeSettings.svelte";
   let text =
     "Lorem Ipsum is simply dummy of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
   // export let text;
+  let selectSimilar = false;
 
   async function processText() {
+    $parsedText = [];
     for (const word of text.split(" ")) {
       $parsedText.push({
         word: word,
@@ -14,34 +16,56 @@
       });
     }
     $parsedText = $parsedText;
+  }
+
+  function setSelectSimilar(value) {
+    selectSimilar = value;
+  }
+
+  function toggleAll(index) {
+    let state = !$parsedText[index].selected;
+    let word = $parsedText[index].word;
+    for (let i = 0; i < $parsedText.length; i++) {
+      if ($parsedText[i].word == word) {
+        toggleSingle(i, state);
+      }
+    }
     console.log($parsedText);
   }
-  function toggleSelected(index) {
-    $parsedText[index].selected = !$parsedText[index].selected;
+
+  function toggleWord(index) {
+    console.log(selectSimilar);
+    if (selectSimilar) {
+      toggleAll(index);
+    } else {
+      toggleSingle(index, !$parsedText[index].selected);
+    }
+  }
+
+  function toggleSingle(index, state) {
+    $parsedText[index].selected = state;
     if ($parsedText[index].selected) {
       $parsedText[index].color = "#ff5d73";
     } else {
       $parsedText[index].color = "#000000";
     }
   }
+
   onMount(async () => {
-    await processText();
-    if ($textChanged) {
-      $textChanged = false;
-    }
+    await processText(/ /);
   });
 </script>
 
 <div class="row">
   <div class="col-lg-9 mt-2">
-    <span contenteditable rows="8" class="form-control">
+    <span rows="8" class="form-control">
       {#each $parsedText as word, index}
         {#if word.selected}
-          <span class="word" style="color: #ff5d73;" on:pointerdown={() => toggleSelected(index)}>
+          <span class="word" style="color: #ff5d73;" on:pointerdown={() => toggleWord(index)}>
             {word.word}
           </span>
         {:else}
-          <span class="word" style="color: #000" on:pointerdown={() => toggleSelected(index)}>
+          <span class="word" style="color: #000" on:pointerdown={() => toggleWord(index)}>
             {word.word}
           </span>
         {/if}
@@ -60,7 +84,7 @@
       <div class="row">
         <div class="col">
           {#if $parsedText.length > 0}
-            <Settings />
+            <ClozeSettings {setSelectSimilar} />
           {/if}
         </div>
       </div>
@@ -87,7 +111,7 @@
     user-select: none;
     white-space: pre-wrap;
   }
-  span.form-control[contenteditable] {
+  span.form-control {
     display: inline-block;
     background-color: #e7dfc6;
     border-top: solid 3px #000;

@@ -1,5 +1,5 @@
 <script>
-  import CreateCloze from "./CreateCloze.svelte";
+  import MainContaier from "./MainContainer.svelte";
   import Navbar from "./Navbar.svelte";
 </script>
 
@@ -8,7 +8,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-1" />
-      <div class="col-md-10"><CreateCloze /></div>
+      <div class="col-md-10"><MainContaier /></div>
       <div class="col-md-1" />
     </div>
   </div>

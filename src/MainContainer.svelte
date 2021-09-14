@@ -3,7 +3,7 @@
   import Cloze from "./Cloze.svelte";
   import Finalize from "./Finalize.svelte";
 
-  let step = 1;
+  let step = 2;
   let text = "";
 
   function switchScreen(val) {

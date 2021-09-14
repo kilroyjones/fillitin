@@ -1,6 +1,6 @@
 <div class="navbar">
-  <span class="navbar-link">Explore</span>
-  <span class="navbar-link">What is this?</span>
+  <span class="navbar-link">Fillit.in</span>
+  <span class="navbar-link">About</span>
 </div>
 
 <style>
@@ -12,6 +12,7 @@
     opacity: 0.8;
     overflow: hidden;
   }
+
   .navbar-link {
     float: right;
     color: #000;
