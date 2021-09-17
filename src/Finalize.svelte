@@ -389,48 +389,71 @@
     },
   ];
 
-  let missingWords = getMissingWords();
+  let words = getMissingWords();
+  let missingWords = words[0];
+  let missingWordsGrouped = words[1];
+  let groupSameWords = false;
 
   function getMissingWords() {
     let missingWords = [];
-    let missingWordsGrouped = Map();
+    let missingWordsDict = {};
+
     for (let i = 0; i < $parsedText.length; i++) {
       if ($parsedText[i].selected) {
-        missingWords.push($parsedText[i]);
+        let word = $parsedText[i];
+        missingWords.push(word);
+        if (missingWordsDict[word.word]) {
+          missingWordsDict[word.word] += 1;
+        } else {
+          missingWordsDict[word.word] = 1;
+        }
       }
     }
-    return missingWords;
+
+    let missingWordsGrouped = [];
+    for (const [word, count] of Object.entries(missingWordsDict)) {
+      missingWordsGrouped.push({ word: word, count: count });
+    }
+    console.log(missingWordsGrouped);
+
+    return [missingWords, missingWordsGrouped];
   }
 </script>
 
 <div class="row">
   <div class="col-lg-9 mt-2">
-    <div class="row top-border">
-      <span rows="8" class="form-control">
-        {#each $parsedText as word}
-          {#if word.selected}
-            <span class="word word-selected">{word.word}</span><span class="word">{" "}</span>
-          {:else}
-            <span class="word" style="color: #000">
-              {word.word}
-            </span>
-          {/if}
-        {/each}
-      </span>
-    </div>
-    {#if missingWords.length > 0}
-      <div class="row bottom-border">
-        {#each missingWords as word}
-          {#if word.selected}
-            <div class="col-2">
+    <div class="row borders">
+      <div class="row section-to-print">
+        <span rows="8" class="form-control">
+          {#each $parsedText as word}
+            {#if word.selected}
+              <span class="word word-selected">{word.word}</span><span class="word">{" "}</span>
+            {:else}
+              <span class="word" style="color: #000">
+                {word.word}
+              </span>
+            {/if}
+          {/each}
+        </span>
+
+        {#if groupSameWords}
+          {#each missingWordsGrouped as word}
+            <div class="col-3">
+              <span class="pill text-center">{word.count} </span>
+              <span class="word" style="color: #000">{word.word}</span>
+            </div>
+          {/each}
+        {:else}
+          {#each missingWords as word}
+            <div class="col-3">
               <span class="word" style="color: #000">
                 {word.word}
               </span>
             </div>
-          {/if}
-        {/each}
+          {/each}
+        {/if}
       </div>
-    {/if}
+    </div>
   </div>
 
   <div class="col-lg-3">
@@ -441,8 +464,18 @@
     </div>
 
     <div class="row">
-      <div class="row">
-        <div class="col" />
+      <div class="row mt-4">
+        <div class="col">
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="groupSameWords"
+              bind:checked={groupSameWords}
+            />
+            <label class="form-check-label" for="groupSameWords">Select similar</label>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -472,24 +505,26 @@
     border-bottom: solid 2px #000;
   }
 
-  .top-border {
+  .borders {
     background-color: #e7dfc6;
     border-top: solid 3px #000;
-    border-bottom: solid 0px #000;
+    border-bottom: solid 3px #000;
     border-left: solid 0px;
     border-right: solid 0px;
   }
 
-  .bottom-border {
-    background-color: #e7dfc6;
-    border-bottom: solid 3px #000;
-    border-top: solid 0px #000;
-    border-left: solid 0px;
-    border-right: solid 0px;
-  }
   span {
     display: inline-block;
     background-color: #e7dfc6;
     border: 0px;
+  }
+
+  .pill {
+    background-color: #ff5d73;
+    color: #fff;
+    border: solid 2px #ff5d73;
+    border-radius: 20px;
+    min-width: 30px;
+    font-weight: 700;
   }
 </style>

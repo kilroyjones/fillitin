@@ -1,14 +1,10 @@
 <script>
-  import AddText from "./AddText.svelte";
-  import Cloze from "./Cloze.svelte";
+  import Add from "./Add/Add.svelte";
+  import Modify from "./Modify/Modify.svelte";
   import Finalize from "./Finalize.svelte";
 
-  let step = 2;
+  import { step } from "./stores.js";
   let text = "";
-
-  function switchScreen(val) {
-    step += val;
-  }
 
   function updateText(updatedText) {
     text = updatedText;
@@ -20,15 +16,15 @@
 </div>
 <div class="row">
   <div class="col">
-    {#if step == 0}
-      <AddText {updateText} />
+    {#if $step == 0}
+      <Add {updateText} />
     {/if}
 
-    {#if step == 1}
-      <Cloze {text} />
+    {#if $step == 1}
+      <Modify {text} />
     {/if}
 
-    {#if step == 2}
+    {#if $step == 2}
       <Finalize />
     {/if}
   </div>

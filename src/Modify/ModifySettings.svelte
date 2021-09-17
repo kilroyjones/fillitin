@@ -1,30 +1,45 @@
 <script>
-  import { parsedText, percentageClozed } from "./stores.js";
+  import { parsedText, percentageClozed } from "../stores.js";
   import { onMount } from "svelte";
 
   export let setSelectSimilar;
+  export let setExcludePunctuation;
 
   let autoClozedIndices = [];
   let selectSimilar = false;
+  let excludePunctuation = false;
 
   function runAutoCloze() {
-    let iterations = parseInt(($percentageClozed / 100) * $parsedText.length);
+    let iterations = parseInt(($percentageClozed / 100) * autoClozedIndices.length);
 
     for (let i = 0; i < $parsedText.length; i++) {
       $parsedText[i].selected = false;
     }
 
     for (let i = 0; i < iterations; i++) {
+      console.log(i, autoClozedIndices[i]);
       $parsedText[autoClozedIndices[i]].selected = true;
     }
   }
 
   function generateAutoClozeIndices() {
-    autoClozedIndices = Array.from(Array($parsedText.length).keys());
-    autoClozedIndices = autoClozedIndices
-      .map((value) => ({ value, sort: Math.random() }))
-      .sort((a, b) => a.sort - b.sort)
-      .map(({ value }) => value);
+    let indices = [];
+    // autoClozedIndices = Array.from(Array($parsedText.length).keys());
+    for (let i = 0; i < $parsedText.length; i++) {
+      let word = $parsedText[i];
+      if (word.selectable) {
+        if (!excludePunctuation && !word.punctuation) {
+          indices.push(i);
+        }
+      }
+    }
+    autoClozedIndices = indices.sort(() => Math.random() - 0.5);
+  }
+
+  function runExclude() {
+    console.log("sdf");
+    setExcludePunctuation(!excludePunctuation);
+    generateAutoClozeIndices();
   }
 
   onMount(async () => {
@@ -57,6 +72,21 @@
         on:input={() => setSelectSimilar(!selectSimilar)}
       />
       <label class="form-check-label" for="selectSimilar">Select similar</label>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col">
+    <div class="form-check form-switch">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="excludePunctuation"
+        bind:checked={excludePunctuation}
+        on:input={() => runExclude()}
+      />
+      <label class="form-check-label" for="excludePunctuation">ect similar</label>
     </div>
   </div>
 </div>

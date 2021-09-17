@@ -1,6 +1,11 @@
+<script>
+  import { step } from "./stores.js";
+</script>
+
 <div class="navbar">
   <span class="navbar-link">Fillit.in</span>
   <span class="navbar-link">About</span>
+  {$step}
 </div>
 
 <style>
