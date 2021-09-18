@@ -1,10 +1,7 @@
 <script>
-  import { parsedText } from "./stores.js";
-  import { onMount } from "svelte";
-
   let text =
     "Lorem Ipsum is simply dummy of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
-  $parsedText = [
+  let parsedText = [
     {
       word: "Lorem",
       selected: true,
@@ -398,9 +395,9 @@
     let missingWords = [];
     let missingWordsDict = {};
 
-    for (let i = 0; i < $parsedText.length; i++) {
-      if ($parsedText[i].selected) {
-        let word = $parsedText[i];
+    for (let i = 0; i < parsedText.length; i++) {
+      if (parsedText[i].selected) {
+        let word = parsedText[i];
         missingWords.push(word);
         if (missingWordsDict[word.word]) {
           missingWordsDict[word.word] += 1;
@@ -425,7 +422,7 @@
     <div class="row borders">
       <div class="row section-to-print">
         <span rows="8" class="form-control">
-          {#each $parsedText as word}
+          {#each parsedText as word}
             {#if word.selected}
               <span class="word word-selected">{word.word}</span><span class="word">{" "}</span>
             {:else}
