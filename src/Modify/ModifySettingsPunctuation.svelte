@@ -11,7 +11,7 @@
   }
 </script>
 
-<div class="row mt-4">
+<div class="row mt-2">
   <div class="col">
     <div class="form-check form-switch">
       <input

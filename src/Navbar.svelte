@@ -1,12 +1,16 @@
-<script>
-  import { step } from "./stores.js";
-</script>
-
-<div class="navbar">
-  <span class="navbar-link">Fillit.in</span>
-  <span class="navbar-link">About</span>
-  {$step}
-</div>
+<nav class="navbar navbar-expand">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/" alt="home"> <img src="favicon-32x32.png" alt="Home" /></a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/" alt="Home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/">About</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 
 <style>
   .navbar {
@@ -18,7 +22,7 @@
     overflow: hidden;
   }
 
-  .navbar-link {
+  .nav-link {
     float: right;
     color: #000;
     text-align: center;
@@ -28,7 +32,7 @@
     font-weight: 600;
   }
 
-  .navbar-link:hover {
-    color: #000;
+  .nav-link:hover {
+    color: #ff5d73;
   }
 </style>

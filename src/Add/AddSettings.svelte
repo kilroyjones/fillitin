@@ -15,8 +15,9 @@
   </div>
 </div>
 
-<div class="row h-100">
-  <div class="col d-flex justify-content-end align-items-end">
+<hr />
+<div class="row mt-4">
+  <div class="col d-flex justify-content-end">
     <button class="btn" on:click={() => ($step = $step + 1)}>Modify > </button>
   </div>
 </div>

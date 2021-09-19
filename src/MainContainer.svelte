@@ -1,7 +1,7 @@
 <script>
   import Add from "./Add/Add.svelte";
   import Modify from "./Modify/Modify.svelte";
-  import Finalize from "./Finalize.svelte";
+  import Finalize from "./Finalize/Finalize.svelte";
 
   import { step } from "./stores.js";
   let text = "";

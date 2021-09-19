@@ -120,6 +120,7 @@
   });
 
   $: if ($regex) {
+    $percentageClozed = 0;
     processText();
     generateAutoClozeIndices();
     runAutoCloze();
@@ -135,7 +136,7 @@
   <div class="col-lg-3">
     <div class="row">
       <div class="col">
-        <span class="title">Adjust</span>
+        <span class="title ">Modify</span>
       </div>
     </div>
 

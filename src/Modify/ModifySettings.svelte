@@ -3,20 +3,19 @@
   import ModifySettingsAutoCloze from "./ModifySettingsAutoCloze.svelte";
   import ModifySettingsSelectSimilar from "./ModifySettingsSelectSimilar.svelte";
   import ModifySettingsPunctuation from "./ModifySettingsPunctuation.svelte";
-  import ModifySettingsClear from "./ModifySettingsClear.svelte";
 </script>
 
 <ModifySettingsAutoCloze />
 <ModifySettingsSelectSimilar />
 <ModifySettingsPunctuation />
-<ModifySettingsClear />
 
+<hr />
 <div class="row h-100 mt-4">
-  <div class="col d-flex justify-content-start align-items-start">
-    <button class="btn" on:click={() => ($step = $step - 1)}> &lt Add </button>
+  <div class="col d-flex mt-2 justify-content-center">
+    <button class="btn" on:click={() => ($step = $step - 1)}> &lt;Add </button>
   </div>
-  <div class="col d-flex justify-content-end align-items-end">
-    <button class="btn" on:click={() => ($step = $step + 1)}>Modify &gt </button>
+  <div class="col d-flex justify-content-center">
+    <button class="btn mt-2" on:click={() => ($step = $step + 1)}>Finalize&gt; </button>
   </div>
 </div>
 
@@ -25,6 +24,7 @@
     background-color: #ff5d73;
     font-weight: 700;
     color: #fff;
+    width: 100%;
   }
 
   button:hover {
