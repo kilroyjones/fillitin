@@ -5,7 +5,7 @@ export const percentageClozed = writable(0);
 export const includePunctuation = writable(false);
 export const selectSimilar = writable(false);
 export const regex = writable(/(\s+)|([\.\;\!\?\,\:\"])/);
-export const step = writable(2);
+export const step = writable(0);
 
 export const groupSameWords = writable(false);
 export const addHeader = writable(true);
