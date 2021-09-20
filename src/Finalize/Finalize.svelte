@@ -1,5 +1,5 @@
 <script>
-  import { finalizeFontFamily, finalizeFontSize, parsedText } from "../stores.js";
+  import { parsedText } from "../stores.js";
   import FinalizeAnswers from "./FinalizeAnswers.svelte";
   import FinalizeSettings from "./FinalizeSettings.svelte";
   import FinalizeContent from "./FinalizeContent.svelte";
@@ -35,7 +35,7 @@
 
 <div class="row">
   <div class="col-lg-9 mt-2">
-    <div class="row borders">
+    <div class="row borders" contenteditable>
       <div class="row section-to-print">
         <div>
           <FinalizeAnswers {missingWords} {missingWordsGrouped} />
@@ -48,11 +48,17 @@
 </div>
 
 <style>
-  .borders {
+  div.borders[contenteditable] {
     background-color: #e7dfc6;
     border-top: solid 3px #000;
     border-bottom: solid 3px #000;
     border-left: solid 0px;
     border-right: solid 0px;
+    display: inline-block;
+    height: auto;
+    margin: auto;
+    min-height: 80px;
+    white-space: pre-wrap;
+    border-radius: 4px;
   }
 </style>

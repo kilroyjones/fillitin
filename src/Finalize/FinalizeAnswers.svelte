@@ -52,7 +52,6 @@
   .word {
     font-weight: 600;
     margin: auto;
-    cursor: pointer;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;

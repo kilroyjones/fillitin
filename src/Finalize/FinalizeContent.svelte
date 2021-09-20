@@ -24,7 +24,6 @@
   .word {
     font-weight: 600;
     margin: auto;
-    cursor: pointer;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -34,6 +33,7 @@
 
   span.form-control {
     display: inline-block;
+    border-radius: 8px;
     background-color: #e7dfc6;
     border: solid 0px;
     padding-top: 10px;

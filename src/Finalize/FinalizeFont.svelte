@@ -46,7 +46,7 @@
 
 <select id="size-select" class="form-select mt-2" aria-label="select-font" on:change={changeSize}>
   {#each fontSizes as size, i}
-    {#if i == 16}
+    {#if i == 10}
       <option value={i} selected>
         {size}
       </option>
