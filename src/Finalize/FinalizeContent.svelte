@@ -1,26 +1,29 @@
 <script>
-  import { finalizeFontFamily, parsedText } from "../stores.js";
+  import { parsedText, finalizeFontFamily, finalizeFontSize } from "../stores.js";
 </script>
 
-<div class="row mt-4 mb-4">
-  <span rows="8">
-    {#each $parsedText as word}
-      {#if word.selected}
-        <span class="word word-selected">{word.word}</span><span class="word">{" "}</span>
-      {:else}
-        <span class="word" style="color: #000;">
-          {word.word}
-        </span>
-      {/if}
-    {/each}
-  </span>
-</div>
+<span rows="8" class="form-control">
+  {#each $parsedText as word, index}
+    {#if word.selected}
+      <span
+        class="word mt-2 word-selected"
+        style="font-family:{$finalizeFontFamily.font}, {$finalizeFontFamily.type}; font-size: {$finalizeFontSize}px !important;"
+        >{word.word}</span
+      >
+    {:else}
+      <span
+        class="word mt-2"
+        style="font-family:{$finalizeFontFamily.font}, {$finalizeFontFamily.type}; font-size: {$finalizeFontSize}px !important;"
+        >{word.word}</span
+      >
+    {/if}
+  {/each}
+</span>
 
 <style>
   .word {
     font-weight: 600;
     margin: auto;
-    margin-top: 5px;
     cursor: pointer;
     -moz-user-select: none;
     -webkit-user-select: none;
@@ -29,16 +32,15 @@
     white-space: pre-wrap;
   }
 
+  span.form-control {
+    display: inline-block;
+    background-color: #e7dfc6;
+    border: solid 0px;
+    padding-top: 10px;
+  }
+
   .word-selected {
     color: #00000000;
     border-bottom: solid 2px #000;
-  }
-
-  span {
-    display: inline-block;
-    background-color: #e7dfc6;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
   }
 </style>

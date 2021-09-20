@@ -9,7 +9,6 @@
 <ModifySettingsSelectSimilar />
 <ModifySettingsPunctuation />
 
-<hr />
 <div class="row h-100 mt-4">
   <div class="col d-flex mt-2 justify-content-center">
     <button class="btn" on:click={() => ($step = $step - 1)}> &lt;Add </button>

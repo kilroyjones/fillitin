@@ -4,11 +4,6 @@
   import Finalize from "./Finalize/Finalize.svelte";
 
   import { step } from "./stores.js";
-  let text = "";
-
-  function updateText(updatedText) {
-    text = updatedText;
-  }
 </script>
 
 <div class="row">
@@ -17,11 +12,11 @@
 <div class="row">
   <div class="col">
     {#if $step == 0}
-      <Add {updateText} />
+      <Add />
     {/if}
 
     {#if $step == 1}
-      <Modify {text} />
+      <Modify />
     {/if}
 
     {#if $step == 2}

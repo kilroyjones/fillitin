@@ -1,5 +1,6 @@
 <script>
-  import { groupSameWords } from "../stores.js";
+  import { groupSameWords, finalizeFontFamily, finalizeFontSize } from "../stores.js";
+
   export let missingWords;
   export let missingWordsGrouped;
 </script>
@@ -9,13 +10,20 @@
     {#each missingWordsGrouped as word}
       <div class="col-4 mb-1">
         <span class="pill text-center">{word.count} </span>
-        <span class="word" style="color: #000">{word.word}</span>
+        <span
+          class="word"
+          style="font-family:{$finalizeFontFamily.font}, {$finalizeFontFamily.type}; font-size: {$finalizeFontSize}px !important;"
+          >{word.word}</span
+        >
       </div>
     {/each}
   {:else}
     {#each missingWords as word}
       <div class="col-4">
-        <span class="word" style="color: #000">
+        <span
+          class="word"
+          style="font-family:{$finalizeFontFamily.font}, {$finalizeFontFamily.type}; font-size: {$finalizeFontSize}px !important;"
+        >
           {word.word}
         </span>
       </div>

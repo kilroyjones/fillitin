@@ -1,5 +1,5 @@
 <script>
-  import { addHeader, groupSameWords } from "../stores.js";
+  import { addHeader, groupSameWords, step } from "../stores.js";
   import FinalizeFont from "./FinalizeFont.svelte";
 </script>
 
@@ -42,7 +42,11 @@
   <div class="row mt-2">
     <FinalizeFont />
   </div>
-  <div class="row mt-2">
+
+  <div class="row mt-4">
+    <div class="col d-flex mt-2 justify-content-top">
+      <button class="btn" on:click={() => ($step = $step - 1)}> &lt;Modify </button>
+    </div>
     <div class="col d-flex mt-2 justify-content-center">
       <button class="btn" on:click={() => window.print()}> Print </button>
     </div>

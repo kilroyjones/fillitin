@@ -10,12 +10,11 @@
    *  - Add existing texts based on difficulty and word count
    *
    */
+  import { originalText } from "../stores.js";
   import { onMount } from "svelte";
   import AddSettings from "./AddSettings.svelte";
 
-  export let updateText;
-  let text =
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+  let text = "";
 
   onMount(() => {
     /**
@@ -32,20 +31,18 @@
       e.preventDefault();
       var text = e.clipboardData.getData("text/plain");
       document.execCommand("insertText", false, text);
+      $originalText = text;
     });
-    updateText(text); // Remove upon production
   });
+
+  function updateText(text) {
+    $originalText = text;
+  }
 </script>
 
 <div class="row">
   <div class="col-lg-9 mt-2">
-    <span
-      contenteditable
-      rows="8"
-      class="form-control"
-      bind:textContent={text}
-      on:keydown={() => updateText(text)}
-    />
+    <span contenteditable rows="8" class="form-control" bind:textContent={$originalText} />
   </div>
 
   <div class="col-lg-3 d-flex flex-column">

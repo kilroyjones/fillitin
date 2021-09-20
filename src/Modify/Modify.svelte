@@ -5,19 +5,16 @@
     selectSimilar,
     percentageClozed,
     updateFlag,
+    parsedText,
+    originalText,
   } from "../stores.js";
 
   import { onMount } from "svelte";
   import ModifySettings from "./ModifySettings.svelte";
   import ModifyContent from "./ModifyContent.svelte";
 
-  let text =
-    "Lorem Ipsum is simply dummy of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
-  // export let text;
-
   let punctuation = ["!", "?", ";", ":", ".", ","];
   let autoClozedIndices = [];
-  let parsedText;
 
   function checkIfSelectable(word, isPunctuation) {
     if (!word.trim()) {
@@ -36,14 +33,14 @@
   }
 
   function processText() {
-    parsedText = [];
+    $parsedText = [];
 
-    for (const word of text.split($regex)) {
+    for (const word of $originalText.split($regex)) {
       if (word != undefined) {
         let isPunctuation = checkIfPunctuation(word);
         let isSelectable = checkIfSelectable(word, isPunctuation);
 
-        parsedText.push({
+        $parsedText.push({
           word: word,
           selected: false,
           selectable: isSelectable,
@@ -51,15 +48,16 @@
         });
       }
     }
-    parsedText = parsedText;
+
+    $parsedText = $parsedText;
     $updateFlag = !$updateFlag;
   }
 
   function toggleAll(index) {
-    let state = !parsedText[index].selected;
-    let word = parsedText[index].word;
-    for (let i = 0; i < parsedText.length; i++) {
-      if (parsedText[i].word == word) {
+    let state = !$parsedText[index].selected;
+    let word = $parsedText[index].word;
+    for (let i = 0; i < $parsedText.length; i++) {
+      if ($parsedText[i].word == word) {
         toggleSingle(i, state);
       }
     }
@@ -69,40 +67,35 @@
     if ($selectSimilar) {
       toggleAll(index);
     } else {
-      toggleSingle(index, !parsedText[index].selected);
+      toggleSingle(index, !$parsedText[index].selected);
     }
   }
 
   function toggleSingle(index, state) {
-    parsedText[index].selected = state;
-    if (parsedText[index].selected) {
-      parsedText[index].color = "#ff5d73";
+    $parsedText[index].selected = state;
+    if ($parsedText[index].selected) {
+      $parsedText[index].color = "#ff5d73";
     } else {
-      parsedText[index].color = "#000000";
+      $parsedText[index].color = "#000000";
     }
-  }
-
-  function updateParsedText(updatedText) {
-    parsedText = updatedText;
   }
 
   function runAutoCloze() {
     let iterations = parseInt(($percentageClozed / 100) * autoClozedIndices.length);
 
-    for (let i = 0; i < parsedText.length; i++) {
-      parsedText[i].selected = false;
+    for (let i = 0; i < $parsedText.length; i++) {
+      $parsedText[i].selected = false;
     }
 
     for (let i = 0; i < iterations; i++) {
-      parsedText[autoClozedIndices[i]].selected = true;
+      $parsedText[autoClozedIndices[i]].selected = true;
     }
-    updateParsedText(parsedText);
   }
 
   function generateAutoClozeIndices() {
     let indices = [];
-    for (let i = 0; i < parsedText.length; i++) {
-      let word = parsedText[i];
+    for (let i = 0; i < $parsedText.length; i++) {
+      let word = $parsedText[i];
       if (word.selectable) {
         if (includePunctuation && !word.punctuation) {
           indices.push(i);
@@ -117,20 +110,22 @@
     processText();
     generateAutoClozeIndices();
     runAutoCloze();
+    $parsedText = $parsedText;
   });
 
-  $: if ($regex) {
+  $: if ($regex || $originalText) {
     $percentageClozed = 0;
     processText();
     generateAutoClozeIndices();
     runAutoCloze();
+    console.log($parsedText);
   }
   $: $percentageClozed, runAutoCloze();
 </script>
 
 <div class="row">
   <div class="col-lg-9 mt-2">
-    <ModifyContent {parsedText} {toggleWord} />
+    <ModifyContent {toggleWord} />
   </div>
 
   <div class="col-lg-3">

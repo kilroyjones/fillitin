@@ -1,0 +1,42 @@
+ <script>
+  import { parsedText } from "../stores.js";
+</script>
+
+<div class="row mt-4 mb-4">
+  <span rows="8" class="form-control">
+    {#each $parsedText as word}
+      {#if word.selected}
+        <span class="word word-selected">{word.word}</span>
+      {:else}
+        <span class="word" style="color: #000;">{word.word}</span>
+      {/if}
+    {/each}
+  </span>
+</div>
+
+<style>
+  .word {
+    font-weight: 600;
+    margin: auto;
+    margin-top: 5px;
+    cursor: pointer;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    white-space: pre-wrap;
+  }
+
+  .word-selected {
+    color: #00000000;
+    border-bottom: solid 2px #000;
+  }
+
+  span {
+    display: inline-block;
+    background-color: #e7dfc6;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+  }
+</style>

@@ -1,10 +1,11 @@
 <script>
-  export let parsedText;
+  import { parsedText } from "../stores.js";
+
   export let toggleWord;
 </script>
 
 <span rows="8" class="form-control">
-  {#each parsedText as word, index}
+  {#each $parsedText as word, index}
     {#if word.selected}
       <span class="word" style="color: #ff5d73;" on:pointerdown={() => toggleWord(index)}
         >{word.word}</span

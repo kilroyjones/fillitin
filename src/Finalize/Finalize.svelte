@@ -1,5 +1,5 @@
 <script>
-  import { parsedText, finalizeFontFamily, finalizeFontSize } from "../stores.js";
+  import { finalizeFontFamily, finalizeFontSize, parsedText } from "../stores.js";
   import FinalizeAnswers from "./FinalizeAnswers.svelte";
   import FinalizeSettings from "./FinalizeSettings.svelte";
   import FinalizeContent from "./FinalizeContent.svelte";
@@ -37,9 +37,7 @@
   <div class="col-lg-9 mt-2">
     <div class="row borders">
       <div class="row section-to-print">
-        <div
-          style="font-family:{$finalizeFontFamily.font}, {$finalizeFontFamily.type}; font-size: {$finalizeFontSize}px !important;"
-        >
+        <div>
           <FinalizeAnswers {missingWords} {missingWordsGrouped} />
           <FinalizeContent />
         </div>
