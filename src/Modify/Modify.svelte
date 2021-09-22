@@ -128,13 +128,19 @@
   });
 </script>
 
+<div class="row d-block d-sm-block d-md-block d-lg-none">
+  <div class="col ">
+    <span class="title">Modify</span>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-lg-9 mt-2">
     <ModifyContent {toggleWord} />
   </div>
 
   <div class="col-lg-3">
-    <div class="row">
+    <div class="row d-none d-lg-block d-xl-block d-xxl-block">
       <div class="col">
         <span class="title ">Modify</span>
       </div>

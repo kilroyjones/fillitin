@@ -4,7 +4,7 @@
 </script>
 
 <div class="col-lg-3">
-  <div class="row">
+  <div class="row d-none d-lg-block d-xl-block d-xxl-block">
     <div class="col">
       <span class="title">Finalize</span>
     </div>

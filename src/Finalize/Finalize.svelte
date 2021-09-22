@@ -33,11 +33,17 @@
   }
 </script>
 
+<div class="row d-block d-sm-block d-md-block d-lg-none">
+  <div class="col ">
+    <span class="title">Finalize</span>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-lg-9 mt-2">
-    <div class="row borders" contenteditable>
-      <div class="row section-to-print">
-        <div>
+    <div class="row borders w-100" contenteditable>
+      <div class="col d-flex flex-column">
+        <div class="row section-to-print">
           <FinalizeAnswers {missingWords} {missingWordsGrouped} />
           <FinalizeContent />
         </div>
@@ -60,5 +66,11 @@
     min-height: 80px;
     white-space: pre-wrap;
     border-radius: 4px;
+  }
+
+  .title {
+    font-size: 36px;
+    font-family: Anton, sans-serif;
+    margin-left: 0px;
   }
 </style>

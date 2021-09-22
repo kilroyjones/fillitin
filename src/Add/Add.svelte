@@ -40,6 +40,12 @@
   }
 </script>
 
+<div class="row d-block d-sm-block d-md-block d-lg-none">
+  <div class="col ">
+    <span class="title">Add your text</span>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-lg-9 mt-2">
     <span contenteditable rows="8" class="form-control" bind:textContent={$originalText} />
@@ -72,9 +78,16 @@
     display: inline-block;
     color: #555;
   }
+
   span:focus {
     outline: 0px !important;
     -webkit-appearance: none;
     box-shadow: none !important;
+  }
+
+  .title {
+    font-size: 36px;
+    font-family: Anton, sans-serif;
+    margin-left: 0px;
   }
 </style>

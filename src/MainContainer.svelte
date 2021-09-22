@@ -1,9 +1,15 @@
 <script>
+  import { parsedText } from "./stores.js";
+
   import Add from "./Add/Add.svelte";
   import Modify from "./Modify/Modify.svelte";
   import Finalize from "./Finalize/Finalize.svelte";
 
   import { step } from "./stores.js";
+
+  $: if ($step == 0) {
+    $parsedText = [];
+  }
 </script>
 
 <div class="row">
