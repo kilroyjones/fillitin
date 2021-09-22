@@ -3,11 +3,14 @@
   import ModifySettingsAutoCloze from "./ModifySettingsAutoCloze.svelte";
   import ModifySettingsSelectSimilar from "./ModifySettingsSelectSimilar.svelte";
   import ModifySettingsPunctuation from "./ModifySettingsPunctuation.svelte";
+
+  export let toggleIncludePunctuation;
+  export let runAutoCloze;
 </script>
 
-<ModifySettingsAutoCloze />
+<ModifySettingsAutoCloze {runAutoCloze} />
 <ModifySettingsSelectSimilar />
-<ModifySettingsPunctuation />
+<ModifySettingsPunctuation {toggleIncludePunctuation} />
 
 <div class="row h-100 mt-4">
   <div class="col d-flex mt-2 justify-content-center">

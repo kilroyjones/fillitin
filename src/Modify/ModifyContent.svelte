@@ -1,7 +1,9 @@
 <script>
-  import { parsedText } from "../stores.js";
+  import { parsedText, updateFlag } from "../stores.js";
 
   export let toggleWord;
+
+  $: $updateFlag;
 </script>
 
 <span rows="8" class="form-control">

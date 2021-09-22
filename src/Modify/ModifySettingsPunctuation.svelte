@@ -1,14 +1,5 @@
 <script>
-  import { includePunctuation, regex } from "../stores.js";
-
-  function toggleIncludePunctuation() {
-    $includePunctuation = !$includePunctuation;
-    if ($includePunctuation) {
-      $regex = /(\s+)/;
-    } else {
-      $regex = /(\s+)|([\.\;\!\?\,\:\"])/;
-    }
-  }
+  export let toggleIncludePunctuation;
 </script>
 
 <div class="row mt-2">
@@ -18,7 +9,6 @@
         class="form-check-input"
         type="checkbox"
         id="excludePunctuation"
-        bind:checked={$includePunctuation}
         on:input={toggleIncludePunctuation}
       />
       <label class="form-check-label" for="excludePunctuation">Include punctuation</label>

@@ -1,10 +1,18 @@
 <script>
   import { percentageClozed } from "../stores.js";
+
+  export let runAutoCloze;
 </script>
 
 <div class="row">
   <div class="col">
-    <input type="range" class="form-range" id="$percentageClozed" bind:value={$percentageClozed} />
+    <input
+      type="range"
+      class="form-range"
+      id="$percentageClozed"
+      bind:value={$percentageClozed}
+      on:input={runAutoCloze}
+    />
     <strong>Cloze {$percentageClozed}%</strong>
     <label for="$percentageClozed" class="form-label" />
   </div>
