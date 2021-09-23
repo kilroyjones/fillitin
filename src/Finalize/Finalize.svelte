@@ -69,6 +69,7 @@
     display: inline-block;
     height: auto;
     margin: auto;
+    width: 100%;
     padding-left: 10px;
     padding-right: 10px;
     min-height: 80px;
