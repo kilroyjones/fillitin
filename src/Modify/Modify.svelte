@@ -129,7 +129,7 @@
 </script>
 
 <div class="row d-block d-sm-block d-md-block d-lg-none">
-  <div class="col ">
+  <div class="col">
     <span class="title">Modify</span>
   </div>
 </div>

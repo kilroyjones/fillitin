@@ -41,11 +41,17 @@
 
 <div class="row">
   <div class="col-lg-9 mt-2">
-    <div class="row borders w-100" contenteditable>
+    <div class="row borders" contenteditable>
       <div class="col d-flex flex-column">
         <div class="row section-to-print">
-          <FinalizeAnswers {missingWords} {missingWordsGrouped} />
-          <FinalizeContent />
+          <div class="col">
+            <div class="row" style="width:95%; margin-left: 20px">
+              <div class="col">
+                <FinalizeAnswers {missingWords} {missingWordsGrouped} />
+              </div>
+            </div>
+            <FinalizeContent />
+          </div>
         </div>
       </div>
     </div>
@@ -63,6 +69,8 @@
     display: inline-block;
     height: auto;
     margin: auto;
+    padding-left: 10px;
+    padding-right: 10px;
     min-height: 80px;
     white-space: pre-wrap;
     border-radius: 4px;

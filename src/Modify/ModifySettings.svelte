@@ -8,6 +8,12 @@
   export let runAutoCloze;
 </script>
 
+<div class="row mt-4 mb-2">
+  <div class="col">
+    Either click the individual words you want to cloze or use the slider above.
+  </div>
+</div>
+
 <ModifySettingsAutoCloze {runAutoCloze} />
 <ModifySettingsSelectSimilar />
 <ModifySettingsPunctuation {toggleIncludePunctuation} />
