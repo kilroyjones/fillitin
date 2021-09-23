@@ -27,11 +27,11 @@
     background-color: #ff5d73;
   }
 
-  .form-range::-moz-range-thumb {
-    background-color: #fff;
+  input[type="range"]::-moz-range-thumb {
+    background-color: #ff5d73;
   }
 
-  .form-range::-ms-thumb {
+  input[type="range"]::-moz-range-track {
     background-color: #fff;
   }
 </style>
