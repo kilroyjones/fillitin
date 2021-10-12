@@ -1,7 +1,6 @@
-# Clozeit 
+# Fillitin
 
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
-
+This is a svelte web app use to create cloze sentences from text. You can find the demo of it at [http://www.fillitin.com](http://www.fillitin.com).
 
 ## To use
 
