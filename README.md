@@ -2,7 +2,7 @@
 
 This is a Svelte web app use to create cloze sentences from text. You can find the demo of it at [https://fillitin.pages.dev/](https://fillitin.pages.dev/).
 
-Note that this
+![fillitin preview](./fillitin.png)
 
 ## To use
 
