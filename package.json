@@ -19,7 +19,6 @@
   },
   "dependencies": {
     "sirv-cli": "^1.0.0",
-    "svelte-editorjs": "^0.1.0",
-    "svelte-quill": "^1.2.0"
+    "svelte-editorjs": "^0.1.0"
   }
 }
